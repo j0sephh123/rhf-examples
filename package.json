@@ -13,6 +13,7 @@
     "ui": "vitest --ui"
   },
   "dependencies": {
+    "@testing-library/user-event": "^14.4.3",
     "autoprefixer": "^10.4.14",
     "clsx": "^1.2.1",
     "daisyui": "^3.1.6",

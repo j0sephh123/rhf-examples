@@ -1,6 +1,6 @@
 import { Route } from "wouter";
 import TheNavbar from "./components/TheNavbar/TheNavbar.tsx";
-import Example from "./components/AsyncContactFormWithValidation.tsx";
+import Example from "./components/AsyncContactFormWithValidation/AsyncContactFormWithValidation.tsx";
 
 export default function App() {
   return (

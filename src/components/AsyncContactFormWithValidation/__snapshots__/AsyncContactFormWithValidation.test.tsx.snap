@@ -1,0 +1,331 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AsyncContactFormWithValidation > 1. should render correct initial state 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="name"
+      >
+        <span
+          class="label-text"
+        >
+          What is your name?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs"
+        id="name"
+        name="name"
+        placeholder="Type here"
+        type="text"
+      />
+    </div>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="email"
+      >
+        <span
+          class="label-text"
+        >
+          What is your email?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs"
+        id="email"
+        name="email"
+        placeholder="Type here"
+        type="text"
+      />
+    </div>
+    <div
+      class="form-control"
+    >
+      <label
+        class="label"
+        for="message"
+      >
+        <span
+          class="label-text"
+        >
+          Your message
+        </span>
+      </label>
+      <textarea
+        class="textarea textarea-bordered h-24"
+        id="message"
+        name="message"
+        placeholder="Bio"
+      />
+    </div>
+    <button
+      class="mt-4 btn-neutral btn btn-block"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`AsyncContactFormWithValidation > 2. should correcty submit 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="name"
+      >
+        <span
+          class="label-text"
+        >
+          What is your name?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs"
+        id="name"
+        name="name"
+        placeholder="Type here"
+        type="text"
+      />
+    </div>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="email"
+      >
+        <span
+          class="label-text"
+        >
+          What is your email?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs"
+        id="email"
+        name="email"
+        placeholder="Type here"
+        type="text"
+      />
+    </div>
+    <div
+      class="form-control"
+    >
+      <label
+        class="label"
+        for="message"
+      >
+        <span
+          class="label-text"
+        >
+          Your message
+        </span>
+      </label>
+      <textarea
+        class="textarea textarea-bordered h-24"
+        id="message"
+        name="message"
+        placeholder="Bio"
+      />
+    </div>
+    <button
+      class="mt-4 btn-neutral btn btn-block"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`AsyncContactFormWithValidation > 3. should correctly validate required fields 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="name"
+      >
+        <span
+          class="label-text"
+        >
+          What is your name?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs input-error"
+        id="name"
+        name="name"
+        placeholder="Type here"
+        type="text"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Name is required
+      </p>
+    </div>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="email"
+      >
+        <span
+          class="label-text"
+        >
+          What is your email?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs input-error"
+        id="email"
+        name="email"
+        placeholder="Type here"
+        type="text"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Email is required
+      </p>
+    </div>
+    <div
+      class="form-control"
+    >
+      <label
+        class="label"
+        for="message"
+      >
+        <span
+          class="label-text"
+        >
+          Your message
+        </span>
+      </label>
+      <textarea
+        class="textarea textarea-bordered h-24 textarea-error"
+        id="message"
+        name="message"
+        placeholder="Bio"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Message is required
+      </p>
+    </div>
+    <button
+      class="mt-4 btn-neutral btn btn-block"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</DocumentFragment>
+`;
+
+exports[`AsyncContactFormWithValidation > 4. should correctly validate custom validations 1`] = `
+<DocumentFragment>
+  <form>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="name"
+      >
+        <span
+          class="label-text"
+        >
+          What is your name?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs input-error"
+        id="name"
+        name="name"
+        placeholder="Type here"
+        type="text"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Must be at least two characters long.
+      </p>
+    </div>
+    <div
+      class="form-control w-full max-w-xs"
+    >
+      <label
+        class="label"
+        for="email"
+      >
+        <span
+          class="label-text"
+        >
+          What is your email?
+        </span>
+      </label>
+      <input
+        class="input input-bordered w-full max-w-xs input-error"
+        id="email"
+        name="email"
+        placeholder="Type here"
+        type="text"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Must include an '@' symbol and a dot.
+      </p>
+    </div>
+    <div
+      class="form-control"
+    >
+      <label
+        class="label"
+        for="message"
+      >
+        <span
+          class="label-text"
+        >
+          Your message
+        </span>
+      </label>
+      <textarea
+        class="textarea textarea-bordered h-24 textarea-error"
+        id="message"
+        name="message"
+        placeholder="Bio"
+      />
+      <p
+        class="text-error text-sm mt-1"
+      >
+        Must be at least ten characters long.
+      </p>
+    </div>
+    <button
+      class="mt-4 btn-neutral btn btn-block"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</DocumentFragment>
+`;

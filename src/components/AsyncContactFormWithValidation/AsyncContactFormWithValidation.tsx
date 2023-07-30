@@ -1,56 +1,22 @@
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
-
-const mockApi = async (contactFormFields: ContactFormFields) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (
-        contactFormFields.email &&
-        contactFormFields.message &&
-        contactFormFields.name
-      ) {
-        resolve(undefined);
-      } else {
-        reject("somethig went wrong");
-      }
-    }, 500);
-  });
-};
-
-const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-
-const errorsMessages = {
-  name: {
-    required: "Name is required",
-    minLength: "Must be at least two characters long.",
-  },
-  email: {
-    required: "Email is required",
-    pattern: "Must include an '@' symbol and a dot.",
-  },
-  message: {
-    required: "Message is required",
-    minLength: "Must be at least ten characters long.",
-  },
-};
-
-type ContactFormFields = { name: string; email: string; message: string };
+import { ContactFormFields } from "./types";
+import { emailRegex, errorsMessages, labels } from "./constants";
+import { mockSubmit } from "./mockApi";
 
 export default function AsyncContactFormWithValidation() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading, isSubmitting },
+    formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormFields>({
     mode: "onSubmit",
-    reValidateMode: "onChange",
+    reValidateMode: "onSubmit",
   });
 
-  console.log({ isLoading, isSubmitting });
-
   const onSubmit = async (contactFormFields: ContactFormFields) => {
-    await mockApi(contactFormFields);
+    await mockSubmit(contactFormFields);
 
     reset();
   };
@@ -58,10 +24,11 @@ export default function AsyncContactFormWithValidation() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control w-full max-w-xs">
-        <label className="label">
-          <span className="label-text">What is your name?</span>
+        <label htmlFor="name" className="label">
+          <span className="label-text">{labels.name}</span>
         </label>
         <input
+          id="name"
           type="text"
           placeholder="Type here"
           className={clsx(
@@ -71,7 +38,7 @@ export default function AsyncContactFormWithValidation() {
           {...register("name", {
             required: {
               value: true,
-              message: "name is required",
+              message: errorsMessages.name.required,
             },
             minLength: {
               message: errorsMessages.name.minLength,
@@ -84,10 +51,11 @@ export default function AsyncContactFormWithValidation() {
         )}
       </div>
       <div className="form-control w-full max-w-xs">
-        <label className="label">
-          <span className="label-text">What is your email?</span>
+        <label htmlFor="email" className="label">
+          <span className="label-text">{labels.email}</span>
         </label>
         <input
+          id="email"
           type="text"
           placeholder="Type here"
           className={clsx(
@@ -97,7 +65,7 @@ export default function AsyncContactFormWithValidation() {
           {...register("email", {
             required: {
               value: true,
-              message: "Email is required",
+              message: errorsMessages.email.required,
             },
             pattern: {
               value: emailRegex,
@@ -110,10 +78,11 @@ export default function AsyncContactFormWithValidation() {
         )}
       </div>
       <div className="form-control">
-        <label className="label">
-          <span className="label-text">Your message</span>
+        <label htmlFor="message" className="label">
+          <span className="label-text">{labels.message}</span>
         </label>
         <textarea
+          id="message"
           className={clsx(
             "textarea textarea-bordered h-24",
             errors.message && "textarea-error"
@@ -122,7 +91,7 @@ export default function AsyncContactFormWithValidation() {
           {...register("message", {
             required: {
               value: true,
-              message: "Message is required",
+              message: errorsMessages.message.required,
             },
             minLength: {
               value: 10,
