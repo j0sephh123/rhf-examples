@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { ContactFormFields } from "./types";
 import { emailRegex, errorsMessages, labels } from "./constants";
 import { mockSubmit } from "./mockApi";
+import FormControl from "../form/FormControl";
 
 export default function AsyncContactFormWithValidation() {
   const {
@@ -23,18 +24,16 @@ export default function AsyncContactFormWithValidation() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="form-control w-full max-w-xs">
-        <label htmlFor="name" className="label">
-          <span className="label-text">{labels.name}</span>
-        </label>
+      <FormControl
+        htmlFor="name"
+        text={labels.name}
+        errorMessage={errors.name?.message}
+      >
         <input
           id="name"
           type="text"
           placeholder="Type here"
-          className={clsx(
-            "input input-bordered w-full max-w-xs",
-            errors.name && "input-error"
-          )}
+          className={clsx("input input-bordered", errors.name && "input-error")}
           {...register("name", {
             required: {
               value: true,
@@ -46,20 +45,18 @@ export default function AsyncContactFormWithValidation() {
             },
           })}
         />
-        {errors.name && (
-          <p className="text-error text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
-      <div className="form-control w-full max-w-xs">
-        <label htmlFor="email" className="label">
-          <span className="label-text">{labels.email}</span>
-        </label>
+      </FormControl>
+      <FormControl
+        htmlFor="email"
+        text={labels.email}
+        errorMessage={errors.email?.message}
+      >
         <input
           id="email"
           type="text"
           placeholder="Type here"
           className={clsx(
-            "input input-bordered w-full max-w-xs",
+            "input input-bordered w-full ",
             errors.email && "input-error"
           )}
           {...register("email", {
@@ -73,14 +70,12 @@ export default function AsyncContactFormWithValidation() {
             },
           })}
         />
-        {errors.email && (
-          <p className="text-error text-sm mt-1">{errors.email.message}</p>
-        )}
-      </div>
-      <div className="form-control">
-        <label htmlFor="message" className="label">
-          <span className="label-text">{labels.message}</span>
-        </label>
+      </FormControl>
+      <FormControl
+        htmlFor="message"
+        text={labels.message}
+        errorMessage={errors.message?.message}
+      >
         <textarea
           id="message"
           className={clsx(
@@ -99,10 +94,7 @@ export default function AsyncContactFormWithValidation() {
             },
           })}
         ></textarea>
-        {errors.message && (
-          <p className="text-error text-sm mt-1">{errors.message.message}</p>
-        )}
-      </div>
+      </FormControl>
       <button
         type="submit"
         className={clsx(

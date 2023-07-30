@@ -1,4 +1,6 @@
-export const errorsMessages = {
+import { ContactFormFields, ErrorsMessages } from "./types";
+
+export const errorsMessages: ErrorsMessages = {
   name: {
     required: "Name is required",
     minLength: "Must be at least two characters long.",
@@ -15,7 +17,7 @@ export const errorsMessages = {
 
 export const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 
-export const labels = {
+export const labels: ContactFormFields = {
   name: "What is your name?",
   email: "What is your email?",
   message: "Your message",

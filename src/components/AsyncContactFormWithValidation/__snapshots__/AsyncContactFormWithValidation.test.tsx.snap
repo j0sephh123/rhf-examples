@@ -4,7 +4,7 @@ exports[`AsyncContactFormWithValidation > 1. should render correct initial state
 <DocumentFragment>
   <form>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -17,7 +17,7 @@ exports[`AsyncContactFormWithValidation > 1. should render correct initial state
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered"
         id="name"
         name="name"
         placeholder="Type here"
@@ -25,7 +25,7 @@ exports[`AsyncContactFormWithValidation > 1. should render correct initial state
       />
     </div>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -38,7 +38,7 @@ exports[`AsyncContactFormWithValidation > 1. should render correct initial state
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered w-full "
         id="email"
         name="email"
         placeholder="Type here"
@@ -79,7 +79,7 @@ exports[`AsyncContactFormWithValidation > 2. should correcty submit 1`] = `
 <DocumentFragment>
   <form>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -92,7 +92,7 @@ exports[`AsyncContactFormWithValidation > 2. should correcty submit 1`] = `
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered"
         id="name"
         name="name"
         placeholder="Type here"
@@ -100,7 +100,7 @@ exports[`AsyncContactFormWithValidation > 2. should correcty submit 1`] = `
       />
     </div>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -113,7 +113,7 @@ exports[`AsyncContactFormWithValidation > 2. should correcty submit 1`] = `
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs"
+        class="input input-bordered w-full "
         id="email"
         name="email"
         placeholder="Type here"
@@ -154,7 +154,7 @@ exports[`AsyncContactFormWithValidation > 3. should correctly validate required 
 <DocumentFragment>
   <form>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -167,7 +167,7 @@ exports[`AsyncContactFormWithValidation > 3. should correctly validate required 
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs input-error"
+        class="input input-bordered input-error"
         id="name"
         name="name"
         placeholder="Type here"
@@ -180,7 +180,7 @@ exports[`AsyncContactFormWithValidation > 3. should correctly validate required 
       </p>
     </div>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -193,7 +193,7 @@ exports[`AsyncContactFormWithValidation > 3. should correctly validate required 
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs input-error"
+        class="input input-bordered w-full  input-error"
         id="email"
         name="email"
         placeholder="Type here"
@@ -244,7 +244,7 @@ exports[`AsyncContactFormWithValidation > 4. should correctly validate custom va
 <DocumentFragment>
   <form>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -257,7 +257,7 @@ exports[`AsyncContactFormWithValidation > 4. should correctly validate custom va
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs input-error"
+        class="input input-bordered input-error"
         id="name"
         name="name"
         placeholder="Type here"
@@ -270,7 +270,7 @@ exports[`AsyncContactFormWithValidation > 4. should correctly validate custom va
       </p>
     </div>
     <div
-      class="form-control w-full max-w-xs"
+      class="form-control"
     >
       <label
         class="label"
@@ -283,7 +283,7 @@ exports[`AsyncContactFormWithValidation > 4. should correctly validate custom va
         </span>
       </label>
       <input
-        class="input input-bordered w-full max-w-xs input-error"
+        class="input input-bordered w-full  input-error"
         id="email"
         name="email"
         placeholder="Type here"
