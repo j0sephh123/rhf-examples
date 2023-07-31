@@ -5,6 +5,10 @@ import { emailRegex, errorsMessages, labels } from "./constants";
 import { mockSubmit } from "./mockApi";
 import FormControl from "../form/FormControl";
 
+// function useRegister() {
+
+// }
+
 export default function AsyncContactFormWithValidation() {
   const {
     register,
@@ -22,6 +26,37 @@ export default function AsyncContactFormWithValidation() {
     reset();
   };
 
+  const registerEmail = register("email", {
+    required: {
+      value: true,
+      message: errorsMessages.email.required,
+    },
+    pattern: {
+      value: emailRegex,
+      message: errorsMessages.email.pattern,
+    },
+  });
+  const registerName = register("name", {
+    required: {
+      value: true,
+      message: errorsMessages.name.required,
+    },
+    minLength: {
+      message: errorsMessages.name.minLength,
+      value: 2,
+    },
+  });
+  const registerMessage = register("message", {
+    required: {
+      value: true,
+      message: errorsMessages.message.required,
+    },
+    minLength: {
+      value: 10,
+      message: errorsMessages.message.minLength,
+    },
+  });
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl
@@ -34,16 +69,7 @@ export default function AsyncContactFormWithValidation() {
           type="text"
           placeholder="Type here"
           className={clsx("input input-bordered", errors.name && "input-error")}
-          {...register("name", {
-            required: {
-              value: true,
-              message: errorsMessages.name.required,
-            },
-            minLength: {
-              message: errorsMessages.name.minLength,
-              value: 2,
-            },
-          })}
+          {...registerName}
         />
       </FormControl>
       <FormControl
@@ -59,16 +85,7 @@ export default function AsyncContactFormWithValidation() {
             "input input-bordered w-full ",
             errors.email && "input-error"
           )}
-          {...register("email", {
-            required: {
-              value: true,
-              message: errorsMessages.email.required,
-            },
-            pattern: {
-              value: emailRegex,
-              message: errorsMessages.email.pattern,
-            },
-          })}
+          {...registerEmail}
         />
       </FormControl>
       <FormControl
@@ -83,16 +100,7 @@ export default function AsyncContactFormWithValidation() {
             errors.message && "textarea-error"
           )}
           placeholder="Bio"
-          {...register("message", {
-            required: {
-              value: true,
-              message: errorsMessages.message.required,
-            },
-            minLength: {
-              value: 10,
-              message: errorsMessages.message.minLength,
-            },
-          })}
+          {...registerMessage}
         ></textarea>
       </FormControl>
       <button

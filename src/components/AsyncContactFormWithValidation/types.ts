@@ -4,12 +4,18 @@ export type ContactFormFields = {
   message: string;
 };
 
+export type ContactFormKeys = keyof ContactFormFields;
+
 type NameErrorMessages = { required: string; minLength: string };
 type EmailErrorMessages = { required: string; pattern: string };
 type MessageErrorMessages = { required: string; minLength: string };
 
 export type ErrorsMessages = {
-  name: NameErrorMessages;
-  email: EmailErrorMessages;
-  message: MessageErrorMessages;
+  [K in ContactFormKeys]: K extends "name"
+    ? NameErrorMessages
+    : K extends "email"
+    ? EmailErrorMessages
+    : K extends "message"
+    ? MessageErrorMessages
+    : never;
 };

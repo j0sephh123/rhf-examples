@@ -12,6 +12,6 @@ export const mockSubmit = async (contactFormFields: ContactFormFields) => {
       } else {
         reject("somethig went wrong");
       }
-    }, 200);
+    }, 50);
   });
 };
