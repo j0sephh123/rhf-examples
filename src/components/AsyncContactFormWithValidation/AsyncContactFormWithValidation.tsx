@@ -1,15 +1,16 @@
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { ContactFormFields } from "./types";
-import { emailRegex, errorsMessages, labels } from "./constants";
+import {
+  emailRegisterOptions,
+  labels,
+  messageRegisterOptions,
+  nameRegisterOptions,
+} from "./constants";
 import { mockSubmit } from "./mockApi";
 import FormControl from "../form/FormControl";
 
-// function useRegister() {
-
-// }
-
-export default function AsyncContactFormWithValidation() {
+function useTypedForm() {
   const {
     register,
     handleSubmit,
@@ -20,42 +21,37 @@ export default function AsyncContactFormWithValidation() {
     reValidateMode: "onSubmit",
   });
 
+  const registerEmail = register("email", emailRegisterOptions);
+  const registerName = register("name", nameRegisterOptions);
+  const registerMessage = register("message", messageRegisterOptions);
+
+  return {
+    errors,
+    handleSubmit,
+    reset,
+    isSubmitting,
+    registerMessage,
+    registerEmail,
+    registerName,
+  };
+}
+
+export default function AsyncContactFormWithValidation() {
+  const {
+    errors,
+    registerEmail,
+    registerMessage,
+    registerName,
+    handleSubmit,
+    isSubmitting,
+    reset,
+  } = useTypedForm();
+
   const onSubmit = async (contactFormFields: ContactFormFields) => {
     await mockSubmit(contactFormFields);
 
     reset();
   };
-
-  const registerEmail = register("email", {
-    required: {
-      value: true,
-      message: errorsMessages.email.required,
-    },
-    pattern: {
-      value: emailRegex,
-      message: errorsMessages.email.pattern,
-    },
-  });
-  const registerName = register("name", {
-    required: {
-      value: true,
-      message: errorsMessages.name.required,
-    },
-    minLength: {
-      message: errorsMessages.name.minLength,
-      value: 2,
-    },
-  });
-  const registerMessage = register("message", {
-    required: {
-      value: true,
-      message: errorsMessages.message.required,
-    },
-    minLength: {
-      value: 10,
-      message: errorsMessages.message.minLength,
-    },
-  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

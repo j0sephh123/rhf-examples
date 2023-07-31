@@ -1,3 +1,4 @@
+import { RegisterOptions } from "react-hook-form";
 import { ContactFormFields, ErrorsMessages } from "./types";
 
 export const errorsMessages: ErrorsMessages = {
@@ -21,4 +22,35 @@ export const labels: ContactFormFields = {
   name: "What is your name?",
   email: "What is your email?",
   message: "Your message",
+};
+
+export const emailRegisterOptions: RegisterOptions = {
+  required: {
+    value: true,
+    message: errorsMessages.email.required,
+  },
+  pattern: {
+    value: emailRegex,
+    message: errorsMessages.email.pattern,
+  },
+};
+export const nameRegisterOptions: RegisterOptions = {
+  required: {
+    value: true,
+    message: errorsMessages.name.required,
+  },
+  minLength: {
+    message: errorsMessages.name.minLength,
+    value: 2,
+  },
+};
+export const messageRegisterOptions: RegisterOptions ={
+  required: {
+    value: true,
+    message: errorsMessages.message.required,
+  },
+  minLength: {
+    value: 10,
+    message: errorsMessages.message.minLength,
+  },
 };
