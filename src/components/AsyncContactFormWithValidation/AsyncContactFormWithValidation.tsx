@@ -9,6 +9,7 @@ import {
 } from "./constants";
 import { mockSubmit } from "./mockApi";
 import FormControl from "../form/FormControl";
+import Button from "../form/Button";
 
 function useTypedForm() {
   const {
@@ -99,15 +100,7 @@ export default function AsyncContactFormWithValidation() {
           {...registerMessage}
         ></textarea>
       </FormControl>
-      <button
-        type="submit"
-        className={clsx(
-          "mt-4 btn-neutral btn btn-block",
-          isSubmitting && "btn-disabled"
-        )}
-      >
-        {isSubmitting ? "Loading..." : "Submit"}
-      </button>
+      <Button isLoading={isSubmitting} />
     </form>
   );
 }
