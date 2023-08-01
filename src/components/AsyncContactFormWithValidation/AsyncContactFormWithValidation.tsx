@@ -1,12 +1,7 @@
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { ContactFormFields } from "./types";
-import {
-  emailRegisterOptions,
-  labels,
-  messageRegisterOptions,
-  nameRegisterOptions,
-} from "./constants";
+import { labels, registerFields } from "./constants";
 import { mockSubmit } from "./mockApi";
 import FormControl from "../form/FormControl";
 import Button from "../form/Button";
@@ -22,9 +17,9 @@ function useTypedForm() {
     reValidateMode: "onSubmit",
   });
 
-  const registerEmail = register("email", emailRegisterOptions);
-  const registerName = register("name", nameRegisterOptions);
-  const registerMessage = register("message", messageRegisterOptions);
+  const [registerName, registerEmail, registerMessage] = registerFields.map(
+    ({ key, registerOptions }) => register(key, registerOptions)
+  );
 
   return {
     errors,

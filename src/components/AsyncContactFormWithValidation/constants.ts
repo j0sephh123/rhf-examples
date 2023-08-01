@@ -1,5 +1,8 @@
-import { RegisterOptions } from "react-hook-form";
-import { ContactFormFields, ErrorsMessages } from "./types";
+import {
+  ContactFormFields,
+  ErrorsMessages,
+  RegisterKeysAndOptions,
+} from "./types";
 
 export const errorsMessages: ErrorsMessages = {
   name: {
@@ -24,33 +27,44 @@ export const labels: ContactFormFields = {
   message: "Your message",
 };
 
-export const emailRegisterOptions: RegisterOptions = {
-  required: {
-    value: true,
-    message: errorsMessages.email.required,
+export const registerFields: RegisterKeysAndOptions[] = [
+  {
+    key: "name",
+    registerOptions: {
+      required: {
+        value: true,
+        message: errorsMessages.name.required,
+      },
+      minLength: {
+        message: errorsMessages.name.minLength,
+        value: 2,
+      },
+    },
   },
-  pattern: {
-    value: emailRegex,
-    message: errorsMessages.email.pattern,
+  {
+    key: "email",
+    registerOptions: {
+      required: {
+        value: true,
+        message: errorsMessages.email.required,
+      },
+      pattern: {
+        value: emailRegex,
+        message: errorsMessages.email.pattern,
+      },
+    },
   },
-};
-export const nameRegisterOptions: RegisterOptions = {
-  required: {
-    value: true,
-    message: errorsMessages.name.required,
+  {
+    key: "message",
+    registerOptions: {
+      required: {
+        value: true,
+        message: errorsMessages.message.required,
+      },
+      minLength: {
+        value: 10,
+        message: errorsMessages.message.minLength,
+      },
+    },
   },
-  minLength: {
-    message: errorsMessages.name.minLength,
-    value: 2,
-  },
-};
-export const messageRegisterOptions: RegisterOptions ={
-  required: {
-    value: true,
-    message: errorsMessages.message.required,
-  },
-  minLength: {
-    value: 10,
-    message: errorsMessages.message.minLength,
-  },
-};
+];

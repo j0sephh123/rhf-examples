@@ -1,3 +1,5 @@
+import { RegisterOptions } from "react-hook-form";
+
 export type ContactFormFields = {
   name: string;
   email: string;
@@ -18,4 +20,9 @@ export type ErrorsMessages = {
     : K extends "message"
     ? MessageErrorMessages
     : never;
+};
+
+export type RegisterKeysAndOptions = {
+  key: ContactFormKeys;
+  registerOptions: RegisterOptions;
 };
