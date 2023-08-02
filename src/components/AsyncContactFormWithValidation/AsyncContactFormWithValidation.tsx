@@ -1,20 +1,20 @@
+import { useForm } from "react-hook-form";
 import clsx from "clsx";
 import { ContactFormFields } from "./types";
 import { labels } from "./constants";
 import FormControl from "../form/FormControl";
 import Button from "../form/Button";
-import useTypedForm from "./useTypedForm";
 import { mockSubmit } from "../../api";
 
 export default function AsyncContactFormWithValidation() {
   const {
-    errors,
+    register,
     handleSubmit,
+    formState: { errors, isSubmitting },
     reset,
-    isSubmitting,
-    registerRefs: [registerName, registerEmail, registerMessage],
-  } = useTypedForm({
-    keys: ["name", "email", "message"],
+  } = useForm<ContactFormFields>({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const onSubmit = async (contactFormFields: ContactFormFields) => {
@@ -35,7 +35,16 @@ export default function AsyncContactFormWithValidation() {
           type="text"
           placeholder="Type here"
           className={clsx("input input-bordered", errors.name && "input-error")}
-          {...registerName}
+          {...register("name", {
+            required: {
+              value: true,
+              message: "Name is required",
+            },
+            minLength: {
+              value: 2,
+              message: "Must be at least two characters long.",
+            },
+          })}
         />
       </FormControl>
       <FormControl
@@ -51,7 +60,16 @@ export default function AsyncContactFormWithValidation() {
             "input input-bordered w-full ",
             errors.email && "input-error"
           )}
-          {...registerEmail}
+          {...register("email", {
+            required: {
+              value: true,
+              message: "Email is required",
+            },
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+              message: "Must include an '@' symbol and a dot.",
+            },
+          })}
         />
       </FormControl>
       <FormControl
@@ -66,7 +84,16 @@ export default function AsyncContactFormWithValidation() {
             errors.message && "textarea-error"
           )}
           placeholder="Bio"
-          {...registerMessage}
+          {...register("message", {
+            required: {
+              value: true,
+              message: "Message is required",
+            },
+            minLength: {
+              value: 10,
+              message: "Must be at least ten characters long.",
+            },
+          })}
         ></textarea>
       </FormControl>
       <Button isLoading={isSubmitting} />
