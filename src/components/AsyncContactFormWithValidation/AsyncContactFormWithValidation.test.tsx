@@ -2,42 +2,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, describe, it } from "vitest";
 import AsyncContactFormWithValidation from "./AsyncContactFormWithValidation";
-import { errorsMessages, labels } from "./constants";
-import * as mockApi from "./mockApi";
-
-/**
-  1. should render correct initial state
-    a. button has "Submit" text and does not have "btn-disabled" class
-    b. labels have default texts
-    c. error paragraphs not rendering `errors.{ContactFormFields}`
-    d. input and text area don't have error classes 
-    e. fields are empty
-  2. should correcty submit
-    a. before
-      i. enter correct values
-      ii. click on submit button
-    b. during
-      i. button should be disabled, have loading class and loading text
-      ii. api should get called with correct field values
-    c. after
-      i. button should have normal state
-      ii. fields should be empty
-  3. should correctly validate required fields
-    a. before
-      i. leave all fields empty, i.e do nothing
-    b. after click submit
-      i. validate that api is not called
-      ii. validate that errors messages appear with correct text
-    c. start typing once again
-      i. enter correct values
-      ii. re-use the logic from 2. to validate that it worked
-  4. should correctly validate custom validations
-    a. before clicking submit
-      i. enter invalid fields for all 3, should not be empty
-    b. after clicking submit
-      i. check for all custom validation messages
-      ii. re-use the logic from 2. to validate that it worked
- */
+import { labels } from "./constants";
+import * as mockApi from "../../api";
 
 describe("AsyncContactFormWithValidation", () => {
   const getDOMElements = () => {
@@ -78,12 +44,18 @@ describe("AsyncContactFormWithValidation", () => {
     expect(screen.getByText(labels.email)).toBeInTheDocument();
     expect(screen.getByText(labels.message)).toBeInTheDocument();
 
-    expect(() => screen.getByText(errorsMessages.name.required)).toThrow();
-    expect(() => screen.getByText(errorsMessages.name.minLength)).toThrow();
-    expect(() => screen.getByText(errorsMessages.email.required)).toThrow();
-    expect(() => screen.getByText(errorsMessages.email.pattern)).toThrow();
-    expect(() => screen.getByText(errorsMessages.message.required)).toThrow();
-    expect(() => screen.getByText(errorsMessages.message.minLength)).toThrow();
+    expect(() => screen.getByText("Name is required")).toThrow();
+    expect(() =>
+      screen.getByText("Must be at least two characters long.")
+    ).toThrow();
+    expect(() => screen.getByText("Email is required")).toThrow();
+    expect(() =>
+      screen.getByText("Must include an '@' symbol and a dot.")
+    ).toThrow();
+    expect(() => screen.getByText("Message is required")).toThrow();
+    expect(() =>
+      screen.getByText("Must be at least ten characters long.")
+    ).toThrow();
 
     expect(nameInput).not.toHaveClass("input-error");
     expect(emailInput).not.toHaveClass("input-error");
@@ -138,14 +110,18 @@ describe("AsyncContactFormWithValidation", () => {
 
     await user.click(btn);
 
-    expect(screen.getByText(errorsMessages.name.required)).toBeInTheDocument();
-    expect(() => screen.getByText(errorsMessages.name.minLength)).toThrow();
-    expect(screen.getByText(errorsMessages.email.required)).toBeInTheDocument();
-    expect(() => screen.getByText(errorsMessages.email.pattern)).toThrow();
-    expect(
-      screen.getByText(errorsMessages.message.required)
-    ).toBeInTheDocument();
-    expect(() => screen.getByText(errorsMessages.message.minLength)).toThrow();
+    expect(screen.getByText("Name is required")).toBeInTheDocument();
+    expect(() =>
+      screen.getByText("Must be at least two characters long.")
+    ).toThrow();
+    expect(screen.getByText("Email is required")).toBeInTheDocument();
+    expect(() =>
+      screen.getByText("Must include an '@' symbol and a dot.")
+    ).toThrow();
+    expect(screen.getByText("Message is required")).toBeInTheDocument();
+    expect(() =>
+      screen.getByText("Must be at least ten characters long.")
+    ).toThrow();
 
     expect(nameInput).toHaveClass("input-error");
     expect(emailInput).toHaveClass("input-error");
@@ -165,13 +141,17 @@ describe("AsyncContactFormWithValidation", () => {
 
     await user.click(btn);
 
-    expect(() => screen.getByText(errorsMessages.name.required)).toThrow();
-    expect(screen.getByText(errorsMessages.name.minLength)).toBeInTheDocument();
-    expect(() => screen.getByText(errorsMessages.email.required)).toThrow();
-    expect(screen.getByText(errorsMessages.email.pattern)).toBeInTheDocument();
-    expect(() => screen.getByText(errorsMessages.message.required)).toThrow();
+    expect(() => screen.getByText("Name is required")).toThrow();
     expect(
-      screen.getByText(errorsMessages.message.minLength)
+      screen.getByText("Must be at least two characters long.")
+    ).toBeInTheDocument();
+    expect(() => screen.getByText("Email is required")).toThrow();
+    expect(
+      screen.getByText("Must include an '@' symbol and a dot.")
+    ).toBeInTheDocument();
+    expect(() => screen.getByText("Message is required")).toThrow();
+    expect(
+      screen.getByText("Must be at least ten characters long.")
     ).toBeInTheDocument();
 
     expect(nameInput).toHaveClass("input-error");

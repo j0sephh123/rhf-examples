@@ -1,47 +1,21 @@
 import clsx from "clsx";
-import { useForm } from "react-hook-form";
 import { ContactFormFields } from "./types";
-import { labels, registerFields } from "./constants";
-import { mockSubmit } from "./mockApi";
+import { labels } from "./constants";
 import FormControl from "../form/FormControl";
 import Button from "../form/Button";
-
-function useTypedForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<ContactFormFields>({
-    mode: "onSubmit",
-    reValidateMode: "onSubmit",
-  });
-
-  const [registerName, registerEmail, registerMessage] = registerFields.map(
-    ({ key, registerOptions }) => register(key, registerOptions)
-  );
-
-  return {
-    errors,
-    handleSubmit,
-    reset,
-    isSubmitting,
-    registerMessage,
-    registerEmail,
-    registerName,
-  };
-}
+import useTypedForm from "./useTypedForm";
+import { mockSubmit } from "../../api";
 
 export default function AsyncContactFormWithValidation() {
   const {
     errors,
-    registerEmail,
-    registerMessage,
-    registerName,
     handleSubmit,
-    isSubmitting,
     reset,
-  } = useTypedForm();
+    isSubmitting,
+    registerRefs: [registerName, registerEmail, registerMessage],
+  } = useTypedForm({
+    keys: ["name", "email", "message"],
+  });
 
   const onSubmit = async (contactFormFields: ContactFormFields) => {
     await mockSubmit(contactFormFields);
