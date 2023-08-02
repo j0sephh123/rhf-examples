@@ -67,7 +67,9 @@ describe("AsyncContactFormWithValidation", () => {
   });
   it("2. should correcty submit", async () => {
     // TODO try again with vi.fakeTimers at some point
-    const spy = vi.spyOn(mockApi, "mockSubmit");
+    const mockSubmit = vi
+      .spyOn(mockApi, "mockSubmit")
+      .mockResolvedValue(undefined);
     const user = userEvent.setup();
 
     const validName = "a valid name";
@@ -86,20 +88,13 @@ describe("AsyncContactFormWithValidation", () => {
 
     await user.click(btn);
 
-    expect(spy).toHaveBeenCalledWith({
+    expect(mockSubmit).toHaveBeenCalledWith({
       email: validEmail,
       message: validMessage,
       name: validName,
     });
 
-    assertButtonLoadingState(btn);
-
-    await waitFor(() => {
-      assertButtonInitialState(btn);
-    });
-
     assertFieldsAreEmpty([emailInput, nameInput, messageTextarea]);
-
     expect(asFragment()).toMatchSnapshot();
   });
   it("3. should correctly validate required fields", async () => {

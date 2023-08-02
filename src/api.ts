@@ -3,6 +3,6 @@ export const mockSubmit = async (fields: any) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(undefined);
-    }, 50);
+    }, 500);
   });
 };
