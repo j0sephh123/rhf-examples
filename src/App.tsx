@@ -1,7 +1,10 @@
 import { Route } from "wouter";
 import TheNavbar from "./components/TheNavbar/TheNavbar.tsx";
-import AsyncContactFormWithValidation from "./components/AsyncContactFormWithValidation/AsyncContactFormWithValidation.tsx";
 import TheSidebar from "./components/TheSidebar/TheSidebar.tsx";
+import ValtioBasics from "./pages/ValtioBasics/ValtioBasics.tsx";
+import { links } from "./constants.ts";
+import CopyTextarea from "./pages/CopyTextarea/CopyTextarea.tsx";
+import ReactHookForm from "./pages/ReactHookForm/ReactHookForm.tsx";
 
 export default function App() {
   return (
@@ -10,11 +13,14 @@ export default function App() {
       <div className="flex">
         <TheSidebar />
         <div className="px-4 flex-1">
-          <Route path="/async_contact_form_with_validation">
-            <AsyncContactFormWithValidation />
+          <Route path={links["React Hook Form"]}>
+            <ReactHookForm />
           </Route>
-          <Route path="/2">
-            <div>2</div>
+          <Route path={links["Valtio Basics"]}>
+            <ValtioBasics />
+          </Route>
+          <Route path={links.Copy}>
+            <CopyTextarea />
           </Route>
         </div>
       </div>

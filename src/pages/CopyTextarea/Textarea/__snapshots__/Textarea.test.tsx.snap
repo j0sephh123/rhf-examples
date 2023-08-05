@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Textarea > set its value to the value prop, on typing calls onChange callback with the correct value 1`] = `
+<DocumentFragment>
+  <textarea
+    class="textarea textarea-lg w-full max-w-5xl border-zinc-400"
+    rows="6"
+  >
+    1
+  </textarea>
+</DocumentFragment>
+`;

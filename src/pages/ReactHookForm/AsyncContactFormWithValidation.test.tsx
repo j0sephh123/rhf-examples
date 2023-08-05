@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, describe, it } from "vitest";
-import AsyncContactFormWithValidation from "./AsyncContactFormWithValidation";
+import ReactHookForm from "./ReactHookForm";
 import { labels } from "./constants";
 import * as mockApi from "../../api";
 
@@ -35,7 +35,7 @@ describe("AsyncContactFormWithValidation", () => {
   };
 
   it("1. should render correct initial state", async () => {
-    const { asFragment } = render(<AsyncContactFormWithValidation />);
+    const { asFragment } = render(<ReactHookForm />);
     const { btn, emailInput, messageTextarea, nameInput } = getDOMElements();
 
     assertButtonInitialState(btn);
@@ -76,7 +76,7 @@ describe("AsyncContactFormWithValidation", () => {
     const validEmail = "email@gmail.com";
     const validMessage = "a valid message";
 
-    const { asFragment } = render(<AsyncContactFormWithValidation />);
+    const { asFragment } = render(<ReactHookForm />);
     const { btn, emailInput, messageTextarea, nameInput } = getDOMElements();
 
     await user.type(nameInput, validName);
@@ -99,7 +99,7 @@ describe("AsyncContactFormWithValidation", () => {
   });
   it("3. should correctly validate required fields", async () => {
     const user = userEvent.setup();
-    const { asFragment } = render(<AsyncContactFormWithValidation />);
+    const { asFragment } = render(<ReactHookForm />);
 
     const { btn, emailInput, messageTextarea, nameInput } = getDOMElements();
 
@@ -126,7 +126,7 @@ describe("AsyncContactFormWithValidation", () => {
   });
   it("4. should correctly validate custom validations", async () => {
     const user = userEvent.setup();
-    const { asFragment } = render(<AsyncContactFormWithValidation />);
+    const { asFragment } = render(<ReactHookForm />);
 
     const { btn, emailInput, messageTextarea, nameInput } = getDOMElements();
 

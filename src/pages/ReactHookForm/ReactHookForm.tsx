@@ -2,11 +2,11 @@ import { useForm } from "react-hook-form";
 import clsx from "clsx";
 import { ContactFormFields } from "./types";
 import { labels } from "./constants";
-import FormControl from "../form/FormControl";
-import Button from "../form/Button";
 import { mockSubmit } from "../../api";
+import Button from "./form/Button";
+import FormControl from "./form/FormControl";
 
-export default function AsyncContactFormWithValidation() {
+export default function ReactHookForm() {
   const {
     register,
     handleSubmit,
